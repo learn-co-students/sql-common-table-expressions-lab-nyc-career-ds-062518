@@ -1,11 +1,9 @@
 def use_cte_to_determine_average_sale():
-    return """Write
-            your
-            query
-            here"""
+    return """ WITH average_sales AS (SELECT AVG(amount) FROM sales)
+    SELECT * FROM average_sales;
+    """
 
 def select_all_above_average_sales():
-    return """Write
-            your
-            query
-            here"""
+    return """WITH average_sales AS (SELECT AVG(amount) As avg_amount FROM sales)
+    SELECT * FROM sales
+    WHERE amount > (SELECT avg_amount FROM average_sales);"""
